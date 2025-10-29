@@ -2,3 +2,6 @@ fastapi==0.120.1
 uvicorn==0.38.0
 pydantic==2.12.3
 pydantic_core==2.41.4
+openai>=2.6.1
+numpy
+pymupdf
