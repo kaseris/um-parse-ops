@@ -1,3 +1,4 @@
+from tkinter import END
 import requests
 from src.providers.dots_ocr.image_utils import PILimage_to_base64
 from openai import OpenAI
@@ -11,17 +12,16 @@ from PIL import Image
 def inference(
         image,
         prompt, 
-        protocol="https",
-        ip="api.runpod.ai/v2/zd3u5itgf0mplf",
-        port=8000,
         temperature=0.1,
         top_p=0.9,
         max_completion_tokens=32768,
         model_name='rednote-hilab/dots.ocr',
         ):
+    ENDPOINT_ID = os.getenv("VLLM_ENDPOINT_ID")
+    DOTS_OCR_API_KEY = os.getenv("DOTS_OCR_TEST_KEY")
+    addr = f"https://api.runpod.ai/v2/{ENDPOINT_ID}/openai/v1"
     
-    addr = f"{protocol}://{ip}/run"
-    client = OpenAI(api_key=f"{os.getenv("DOTS_OCR_TEST_KEY")}", base_url=addr)
+    client = OpenAI(api_key=DOTS_OCR_API_KEY, base_url=addr)
     messages = []
     messages.append(
         {
