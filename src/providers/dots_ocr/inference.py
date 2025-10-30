@@ -11,17 +11,16 @@ from PIL import Image
 def inference(
         image,
         prompt, 
-        protocol="https",
-        ip="api.runpod.ai/v2/zd3u5itgf0mplf",
-        port=8000,
         temperature=0.1,
         top_p=0.9,
         max_completion_tokens=32768,
         model_name='rednote-hilab/dots.ocr',
         ):
+    ENDPOINT_ID = os.getenv("VLLM_ENDPOINT_ID")
+    DOTS_OCR_API_KEY = os.getenv("DOTS_OCR_TEST_KEY")
+    addr = f"https://api.runpod.ai/v2/{ENDPOINT_ID}/openai/v1"
     
-    addr = f"{protocol}://{ip}/run"
-    client = OpenAI(api_key=f"{os.getenv("DOTS_OCR_TEST_KEY")}", base_url=addr)
+    client = OpenAI(api_key=DOTS_OCR_API_KEY, base_url=addr)
     messages = []
     messages.append(
         {
@@ -83,7 +82,7 @@ if __name__ == "__main__":
     # "prompt_table_latex": """Convert the table in this image to LaTeX.""",
     # "prompt_formula_latex": """Convert the formula in this image to LaTeX.""",
 }
-    img = Image.open("55-02-135-00-31_ΑΚΝ32911764.jpg")
+    img = Image.open("fd3be268-5996-4d42-8156-41ad23399b1a%2FPresentation_speech_(draft).jpg")
     prompt = dict_promptmode_to_prompt["prompt_layout_all_en"]
     output = inference(
         image=img,
