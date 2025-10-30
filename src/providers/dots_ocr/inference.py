@@ -1,4 +1,3 @@
-from tkinter import END
 import requests
 from src.providers.dots_ocr.image_utils import PILimage_to_base64
 from openai import OpenAI
@@ -83,7 +82,7 @@ if __name__ == "__main__":
     # "prompt_table_latex": """Convert the table in this image to LaTeX.""",
     # "prompt_formula_latex": """Convert the formula in this image to LaTeX.""",
 }
-    img = Image.open("55-02-135-00-31_ΑΚΝ32911764.jpg")
+    img = Image.open("fd3be268-5996-4d42-8156-41ad23399b1a%2FPresentation_speech_(draft).jpg")
     prompt = dict_promptmode_to_prompt["prompt_layout_all_en"]
     output = inference(
         image=img,
