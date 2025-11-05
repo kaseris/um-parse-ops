@@ -9,7 +9,7 @@ from src.providers.dots_ocr.image_utils import PILimage_to_base64
 def inference(image: Image):
     client = OpenAI(
         api_key=settings.RUNPOD_API_KEY,
-        base_url=f"https://api.runpod.ai/v2/{settings.DEEPSEEK_OCR_ENDPOINT_ID}/openai/v1",
+        base_url=f"https://{settings.DEEPSEEK_OCR_ENDPOINT_ID}.api.runpod.ai",
         timeout=3600
     )
 
