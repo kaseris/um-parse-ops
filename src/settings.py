@@ -8,7 +8,8 @@ load_dotenv()
 @dataclass
 class Settings:
     PORT: int = 8000
-    RUNPOD_ID: str = os.getenv("VLLM_ENDPOINT_ID")
-    RUNPOD_API_KEY: str = os.getenv("DOTS_OCR_TEST_KEY") # TODO: change it
+    DOTS_OCR_ENDPOINT_ID: str = os.getenv("DOTS_OCR_ENDPOINT_ID")
+    DEEPSEEK_OCR_ENDPOINT_ID = os.getenv("DEEPSEEK_OCR_ENDPOINT_ID")
+    RUNPOD_API_KEY: str = os.getenv("RUNPOD_API_KEY")
 
 settings = Settings()

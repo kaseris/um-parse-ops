@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+from src.settings import settings
 from PIL import Image
 
 def inference(
@@ -16,11 +16,9 @@ def inference(
         max_completion_tokens=32768,
         model_name='rednote-hilab/dots.ocr',
         ):
-    ENDPOINT_ID = os.getenv("VLLM_ENDPOINT_ID")
-    DOTS_OCR_API_KEY = os.getenv("DOTS_OCR_TEST_KEY")
-    addr = f"https://api.runpod.ai/v2/{ENDPOINT_ID}/openai/v1"
+    addr = f"https://api.runpod.ai/v2/{settings.DOTS_OCR_ENDPOINT_ID}/openai/v1"
     
-    client = OpenAI(api_key=DOTS_OCR_API_KEY, base_url=addr)
+    client = OpenAI(api_key=settings.RUNPOD_API_KEY, base_url=addr)
     messages = []
     messages.append(
         {
